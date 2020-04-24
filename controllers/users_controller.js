@@ -27,6 +27,12 @@ module.exports.SignIn = function(req, res) {
     return res.redirect("/users/profile");
 }
 
+
+module.exports.destroySession = function(req, res) {
+    req.logout();
+    return res.redirect("/");
+}
+
 // get the sign-up data
 
 module.exports.create = function(req, res) {
