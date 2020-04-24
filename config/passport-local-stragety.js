@@ -24,26 +24,23 @@ passport.use(new LocalStragety({
 
 ));
 
-
-// serializing cookies
-
-passport.serializeUser(user, done) {
+// used to serialize the user for the session
+passport.serializeUser(function(user, done) {
     done(null, user.id);
-}
+    // where is this user.id going? Are we supposed to access this anywhere?
+});
 
-
-//deserializing cookies
-
-passport.deserializeUser(id, done) {
-    User.findById(id, function(e, user) {
-        if (e) {
-            console.log("Error in finding user");
+// used to deserialize the user
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        if (err) {
+            console.log("Error in finding the user");
             return done(err);
         }
-        return done(null, user);
 
-    })
-}
+        return done(null, user);
+    });
+});
 
 
 module.exports = passport;

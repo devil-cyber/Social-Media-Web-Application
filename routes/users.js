@@ -17,6 +17,8 @@ router.get("/sign-up", userController.SignUp);
 
 router.post("/create", userController.create);
 
+//create session
+router.post("/create_session", userController.create_session);
 
 
 
