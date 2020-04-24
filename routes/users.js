@@ -13,6 +13,10 @@ router.get("/sign-in", userController.SignIn);
 
 router.get("/sign-up", userController.SignUp);
 
+//create
+
+router.post("/create", userController.create);
+
 
 
 
