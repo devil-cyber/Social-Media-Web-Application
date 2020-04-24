@@ -1,8 +1,9 @@
 const express = require("express");
+const passport = require("passport");
 const router = express.Router();
 const userController = require("../controllers/users_controller");
 
-router.get("/profile", userController.profile);
+router.get("/profile", passport.checkAuthentication, userController.profile);
 
 
 // sign in
@@ -18,7 +19,11 @@ router.get("/sign-up", userController.SignUp);
 router.post("/create", userController.create);
 
 //create session
-router.post("/create_session", userController.create_session);
+router.post("/create_session", passport.authenticate(
+    "local", {
+        failureRedirect: "/users/sign-in"
+    }
+), userController.create_session);
 
 
 

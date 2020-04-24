@@ -1,6 +1,6 @@
 module.exports.profile = function(req, res) {
     return res.render("user_profile", {
-        title: "Profile"
+        title: "Profile",
     });
 }
 
@@ -8,16 +8,23 @@ module.exports.profile = function(req, res) {
 // render SignUp page
 const User = require("../models/user");
 module.exports.SignUp = function(req, res) {
-    return res.render("user_sign_up", {
-        title: "Codeial ! SignUp"
-    });
+    if (!req.isAuthenticated()) {
+        return res.render("user_sign_up", {
+            title: "Codeial ! SignUp"
+        });
+    }
+    return res.redirect("/users/profile");
+
 }
 
 // render SignIn page
 module.exports.SignIn = function(req, res) {
-    return res.render("user_sign_in", {
-        title: "Codeial ! SignIn"
-    });
+    if (!req.isAuthenticated()) {
+        return res.render("user_sign_in", {
+            title: "Codeial ! SignIn"
+        });
+    }
+    return res.redirect("/users/profile");
 }
 
 // get the sign-up data

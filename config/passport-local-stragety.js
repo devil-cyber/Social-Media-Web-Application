@@ -5,23 +5,20 @@ const User = require("../models/user");
 
 passport.use(new LocalStragety({
         usernameField: "email"
-
     },
     function(email, password, done) {
         User.findOne({ email: email }, function(err, user) {
             if (err) {
-                console.log("Error in -->passport");
+                console.log("Error due to -->passport");
                 return done(err);
             }
-            if (!user || user.passowrd != password) {
-                console.log("Invalid username/password");
-                return (null, false);
+            if (!user || user.password != password) {
+                console.log("not valid user name or passowrd");
+                return done(null, false);
             }
-            return (null, user);
+            return done(null, user);
         });
     }
-
-
 ));
 
 // used to serialize the user for the session
@@ -41,6 +38,28 @@ passport.deserializeUser(function(id, done) {
         return done(null, user);
     });
 });
+
+//check if the user is authentiacted
+passport.checkAuthentication = function(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    //if the user is not signed in
+    return res.redirect("/users/sign-in");
+}
+passport.setAuthenticatedUser = function(req, res, next) {
+    if (req.isAuthenticated()) {
+        // req.user contains the current signed in user from the session cookie and we are just sending thsi to locals for the views     
+        res.locals.user = req.user;
+    }
+    next();
+}
+
+
+
+
+
+
 
 
 module.exports = passport;
