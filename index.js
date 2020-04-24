@@ -8,6 +8,15 @@ const db = require("./config/mongoose");
 const session = require("express-session");
 const passport = require("./config/passport-local-stragety");
 const MongoStore = require("connect-mongo")(session);
+const sassMiddleware = require("node-sass-middleware");
+
+app.use(sassMiddleware({
+    src: "./assets/scss",
+    dest: "./assets/css",
+    debug: true,
+    outputStyle: "expanded",
+    prefix: "/css"
+}))
 
 //middleware
 app.use(express.urlencoded());
