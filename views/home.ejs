@@ -2,9 +2,25 @@
 
 <h2 id="name">Codeial Homepage</h2>
 <section id="post" class="container">
-    <h4>Post</h4>
-    <form action="" id="new-post-form" method="POST">
-        <textarea name="content" cols="30" rows="3" placeholder="type here..."></textarea>
-        <input type="submit" value="Post">
-    </form>
+    <div class="row">
+        <h4>Post</h4>
+        <form action="/post/create" id="new-post-form" method="POST">
+            <textarea name="content" cols="30" rows="3" placeholder="type here..."></textarea>
+            <input type="submit" value="Post">
+        </form>
+    </div>
+    <div class="row">
+        <ul>
+            <%for(posts of post){%>
+                <li>
+                    <span>
+                        <%=posts.content%>
+                    </span>
+                    <br>
+                    <small><%=posts.user.name%></small>
+                </li>
+
+                <%}%>
+        </ul>
+    </div>
 </section>
