@@ -1,10 +1,10 @@
-#name {
+.c2 {
   position: absolute;
   top: 60px;
 }
 
 @media (max-width: 360px) {
-  #name {
+  .c2 {
     position: absolute;
     top: 90px;
   }

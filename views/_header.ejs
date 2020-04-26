@@ -1,30 +1,29 @@
-<header>
-    header page
-    <div class="container">
-        <ul>
-            <%if(locals.user){%>
-                <li>
-                    <a href="/users/profile">
-                        <%=user.name%>
-                    </a>
+<link rel="stylesheet" href="/css/_header.css">
+<nav class="navbar navbar-light  navbar-expand-sm cl fixed-top">
+    <a href="#" class="navbar-brand brand-name">Codeial</a>
+    <ul class="navbar-nav ml-auto list">
+        <%if(locals.user){%>
+            <li class="nav-item again-list">
+                <a class="nav-link name" href="/users/profile">
+                    <%=user.name%>
+                </a>
+            </li>
+            <li class="nav-item again-list">
+                <a class="nav-link name" href="/users/sign-out">Sign Out</a>
+            </li>
+
+
+
+
+            <%}else{%>
+
+                <li class="nav-item again-list">
+                    <a class="nav-link  name" href="/users/sign-up">Sign Up</a>
                 </li>
-                <li>
-                    <a href="/users/sign-out">Sign Out</a>
+                <li class="nav-item again-list">
+                    <a class="nav-link name" href="/users/sign-in">Sign In</a>
                 </li>
+                <%}%>
 
-
-
-
-                <%}else{%>
-
-                    <li>
-                        <a href="/users/sign-up">Sign Up</a>
-                    </li>
-                    <li>
-                        <a href="/users/sign-in">Sign In</a>
-                    </li>
-                    <%}%>
-
-        </ul>
-    </div>
-</header>
+    </ul>
+</nav>

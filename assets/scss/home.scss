@@ -1,0 +1,11 @@
+#name {
+    position: absolute;
+    top: 60px;
+}
+
+@media(max-width:360px) {
+    #name {
+        position: absolute;
+        top: 90px;
+    }
+}

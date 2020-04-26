@@ -1,0 +1,14 @@
+.cl {
+  background-color: steelblue;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.cl .brand-name {
+  color: white;
+  font-size: 1.4rem;
+}
+
+.cl .list .again-list .name {
+  color: white;
+}
