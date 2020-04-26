@@ -1,11 +1,20 @@
 #name {
   position: absolute;
-  top: 60px;
+  top: 9%;
 }
 
-@media (max-width: 360px) {
+#post {
+  position: relative;
+  top: 100px;
+}
+
+@media (max-width: 578px) {
   #name {
     position: absolute;
-    top: 90px;
+    top: 10.5%;
+  }
+  #post {
+    position: relative;
+    top: 130px;
   }
 }
