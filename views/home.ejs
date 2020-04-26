@@ -1,13 +1,15 @@
 <link rel="stylesheet" href="/css/home.css">
 
 <h2 id="name">Codeial Homepage</h2>
-<section id="post" class="container">
+<section id="post" class="container-fluid">
     <div class="row">
         <h4>Post</h4>
-        <form action="/post/create" id="new-post-form" method="POST">
-            <textarea name="content" cols="30" rows="3" placeholder="type here..."></textarea>
-            <input type="submit" value="Post">
-        </form>
+        <%if(locals.user){%>
+            <form action="/post/create" id="new-post-form" method="POST">
+                <textarea name="content" cols="30" rows="3" placeholder="type here..."></textarea>
+                <input type="submit" value="Post">
+            </form>
+            <%}%>
     </div>
     <div class="row">
         <ul>
