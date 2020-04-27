@@ -10,12 +10,18 @@ module.exports.home = function(req, res) {
     //         });
     //     });
     //populate the user that is refrenced with the user object
-    Post.find({}).populate("user").exec(function(err, post) {
-        return res.render("home", {
-            title: "Codeial | Home",
-            post: post
+    Post.find({}).populate("user").populate({
+            path: "comment",
+            populate: {
+                path: "user"
+            }
+        })
+        .exec(function(err, post) {
+            return res.render("home", {
+                title: "Codeial | Home",
+                post: post
+
+            });
 
         });
-
-    });
 }

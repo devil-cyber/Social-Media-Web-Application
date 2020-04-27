@@ -8,7 +8,7 @@ router.get("/", homeController.home);
 router.use("/users", require("./users"));
 
 router.use("/post", require("./post"));
-
+router.use("/comment", require("./comment"));
 
 
 

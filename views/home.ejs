@@ -2,7 +2,8 @@
 
 <h2 id="name">Codeial Homepage</h2>
 <section id="post" class="container-fluid">
-    <div class="row">
+
+    <div class="container">
         <h4>Post</h4>
         <%if(locals.user){%>
             <form action="/post/create" id="new-post-form" method="POST">
@@ -15,11 +16,40 @@
         <ul>
             <%for(posts of post){%>
                 <li>
-                    <span>
-                        <%=posts.content%>
-                    </span>
-                    <br>
-                    <small><%=posts.user.name%></small>
+                    <p>
+                        <%if(locals.user && locals.user.id==posts.user.id){%>
+                            <small>
+                            <a style="color:red" href="/post/destroy_post/<%=posts.id%>">X</a>
+                        </small>
+                            <%}%>
+                                <%=posts.content%><br>
+                                    <small><%=posts.user.name%></small>
+                    </p>
+                    <div class="comment">
+
+                        <div class="post-comment">
+                            <ul id="post-comment-list-<%=posts._id%>">
+                                <%for(i of posts.comment){%>
+                                    <p>
+                                        <%=i.content%><br>
+                                            <small>
+                                        <%=i.user.name%>
+                                    </small>
+                                    </p>
+
+                                    <%}%>
+                            </ul>
+                        </div>
+                        <%if(locals.user){%>
+                            <form action="/comment/create" method="POST">
+                                <input type="text" name="content" placeholder="comment" required>
+                                <input type="hidden" name="post" value="<%=posts._id%>">
+                                <input type="submit" value="Comment">
+
+                            </form>
+
+                            <%}%>
+                    </div>
                 </li>
 
                 <%}%>
