@@ -4,9 +4,11 @@
     <ul class="navbar-nav ml-auto list">
         <%if(locals.user){%>
             <li class="nav-item again-list">
-                <a class="nav-link name" href="/users/profile">
-                    <%=user.name%>
-                </a>
+                <li class="nav-item again-list">
+                    <a class="nav-link name" href="/users/profile/<%=user.id%>">
+                        <%=user.name%>
+                    </a>
+                </li>
             </li>
             <li class="nav-item again-list">
                 <a class="nav-link name" href="/users/sign-out">Sign Out</a>

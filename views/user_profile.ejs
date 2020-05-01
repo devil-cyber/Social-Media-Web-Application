@@ -5,10 +5,33 @@
 
 <div class="container c1">
     <h1>Codeial Profile</h1>
+<%if(user_profile.id ==  user.id){%>
+    <form action="/users/update/<%=user_profile.id%>" method="POST">
+        <input type="text"name="name"value="<%=user_profile.name%>" required>
+        <input type="email"name="email"value="<%=user_profile.email%>"required>
+        <input type="submit" value="Update">
+    </form>
     <p>
-        <%=user.name%>
+        <%=user_profile.name%>
     </p>
     <p>
-        <%=user.email%>
+        <%=user_profile.email%>
     </p>
+    
+<%}else{%>
+    
+   
+    <p>
+        <%=user_profile.name%>
+    </p>
+    <p>
+        <%=user_profile.email%>
+    </p>
+    
+    
+    <%}%>
+    
 </div>
+
+
+

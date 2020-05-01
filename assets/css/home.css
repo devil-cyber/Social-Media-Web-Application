@@ -1,20 +1,15 @@
-#name {
-  position: absolute;
-  top: 9%;
-}
-
-#post {
-  position: relative;
-  top: 100px;
+.home-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
 }
 
 @media (max-width: 578px) {
-  #name {
-    position: absolute;
-    top: 10.5%;
+  .home-container .post1 {
+    margin-left: 10px;
   }
-  #post {
-    position: relative;
-    top: 130px;
+  .home-container .post1 #create-post {
+    position: absolute;
+    top: 160px;
   }
 }

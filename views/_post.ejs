@@ -1,0 +1,25 @@
+<%for(posts of post){%>
+    <li>
+        <p>
+            <%if(locals.user && locals.user.id==posts.user.id){%>
+                <small>
+                <a style="color:red" href="/post/destroy_post/<%=posts.id%>">X</a>
+            </small>
+                <%}%>
+                    <small style="color:blue;"><%=posts.user.name%></small><br>
+                    <%=posts.content%>
+
+        </p>
+        <%if(locals.user){%>
+            <form id="comment-form" action="/comment/create" method="POST">
+
+                <input type="text" name="content" placeholder="comment" required />
+                <input type="hidden" name="post" value="<%=posts._id%>" />
+                <input type="submit" value="enter" />
+            </form>
+
+            <%}%>
+                <%-include("_comment")%>
+    </li>
+
+    <%}%>

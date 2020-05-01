@@ -1,0 +1,21 @@
+<div class="comment">
+    <ul>
+        <%for(i of posts.comment){%>
+            <li>
+                <p>
+                    <%if(locals.user && locals.user.id==i.user.id ){%>
+                        <small>
+                    <a style="color: red;" href="/comment/destroy_comment/<%=i.id%>">X</a>
+                </small>
+                        <%}%>
+                            <small style="color:blue;text-decoration: underline;">
+                    <%=i.user.name%>
+                 </small>
+                            <%=i.content%><br>
+                </p>
+
+                <%}%>
+            </li>
+    </ul>
+
+</div>
