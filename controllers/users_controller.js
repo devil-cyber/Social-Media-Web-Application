@@ -37,6 +37,7 @@ module.exports.SignIn = function(req, res) {
 
 module.exports.destroySession = function(req, res) {
     req.logout();
+    req.flash("success","You have logged Out Sucessfully");
     return res.redirect("/");
 }
 
@@ -49,16 +50,18 @@ module.exports.create = function(req, res) {
 
     User.findOne({ email: req.body.email }, function(e, user) {
         if (e) {
-            console.log("Error in sign-up");
+            req.flash("error",e);
         }
         if (!user) {
             User.create(req.body, function(e, user) {
                 if (e) {
-                    console.log("Error in creating the sign-up credentials");
+                     req.flash("error",e);
                 }
+                req.flash("success","You have Sign up successfully");
                 return res.redirect("/users/sign-in");
             });
         } else {
+            req.flash("error","this credentials belongs to other user");
             return res.redirect("back");
         }
     });
@@ -69,6 +72,8 @@ module.exports.create = function(req, res) {
 //create session
 
 module.exports.create_session = function(req, res) {
+    req.flash("success","Logged  In successfully");
+   
     return res.redirect("/");
 }
 
@@ -78,12 +83,13 @@ module.exports.update=function(req,res){
     if(req.params.id==req.user.id){
         User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
            if(err){
-               console.log("Error in updating the user info.")
+               req.flash("error","Invalid Credentials");
            }
            return res.redirect("back");
         });
     }
     else{
+        
         return res.status(401).send("Unauthorized");
     }
 }

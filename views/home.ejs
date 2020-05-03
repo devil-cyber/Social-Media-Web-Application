@@ -1,36 +1,34 @@
 <link rel="stylesheet" href="/css/home.css">
-<center style="margin-top:60px;"><h2>Codeial Homepage</h2></center>
+<!-- <center style="position: absolute;top:100px;left:45%">
+    <h2>Codeial Homepage</h2> -->
+</center>
 <div class="home-container">
-    <div class="post2">
-            <h4>Friends List</h4>
-        <%for(friend of user_list){%>
-            <ul>
-                <li><a href="users/profile/<%=friend.id%>"><%=friend.name%></a></li>
-            </ul>
-            
-            <%}%>
-        </div>
-
-
-
-
-
-
-<div class="post1">
-<div id="create-post">
-        <h4>Post</h4>
-        <%if(locals.user){%>
-            <form action="/post/create" id="new-post-form" method="POST">
+    <div class="post1">
+        <div id="create-post">
+            <h4 style="margin-left:20px;">Post</h4>
+            <%if(locals.user){%>
+            <form style="margin-left:20px;" action="/post/create" id="new-post-form" method="POST">
                 <textarea name="content" cols="25" rows="2" placeholder="type here..."></textarea>
                 <input type="submit" value="Post">
             </form>
+            <%}%>
+        
+                <ul id="list" style="list-style: none;">
+                    <%- include("_post")%>
+            </ul>
+            <div>
+            </div>
+    
+</div>
+
+
+</div>
+<div class="post2">
+    <h4>&nbsp;&nbsp;Friends List</h4>
+    <%for(friend of user_list){%>
+    <ul>
+        <li><a href="users/profile/<%=friend.id%>"><%=friend.name%></a></li>
+    </ul>
+
     <%}%>
-
-        <ul>
-            <%- include("_post")%>
-        </ul>
-<div>
 </div>
-
-</div>
-

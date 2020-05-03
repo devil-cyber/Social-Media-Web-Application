@@ -1,21 +1,28 @@
 <%for(posts of post){%>
-    <li>
+    <li style="border-bottom:1px solid grey;background-color: whitesmoke;height:200px;width:250px;padding:4px;">
         <p>
-            <%if(locals.user && locals.user.id==posts.user.id){%>
-                <small>
-                <a style="color:red" href="/post/destroy_post/<%=posts.id%>">X</a>
-            </small>
-                <%}%>
-                    <small style="color:blue;"><%=posts.user.name%></small><br>
+            
+                
+               
+                    <small style="color:blue;margin-bottom: 5px;text-align: left;font-size: 1.1rem;"><%=posts.user.name%></small>
+                    <%if(locals.user && locals.user.id==posts.user.id){%>
+                    <small>
+                        <a style="color:red;" href="/post/destroy_post/<%=posts.id%>">X</a>
+                    </small>
+                    <%}%>
+                    <br>
+                    <span id="post-style">
                     <%=posts.content%>
+                    <hr>
+                </span>
 
         </p>
         <%if(locals.user){%>
             <form id="comment-form" action="/comment/create" method="POST">
 
-                <input type="text" name="content" placeholder="comment" required />
+                <input  style="width:130px;border-radius: 4px;padding:2px;"type="text" name="content" placeholder="comment" required >
                 <input type="hidden" name="post" value="<%=posts._id%>" />
-                <input type="submit" value="enter" />
+                <input style="border-radius: 2px;padding:2px;"type="submit" value="comment" />
             </form>
 
             <%}%>
