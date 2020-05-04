@@ -12,10 +12,14 @@
                 <input type="submit" value="Post">
             </form>
             <%}%>
-        
+        <div id="post-list-container">
                 <ul id="list" style="list-style: none;">
+                    <%for(posts of post){%>
                     <%- include("_post")%>
+                    
+    <%}%>
             </ul>
+        </div>
             <div>
             </div>
     
@@ -32,3 +36,4 @@
 
     <%}%>
 </div>
+<script src="/js/home_post.js"></script>
