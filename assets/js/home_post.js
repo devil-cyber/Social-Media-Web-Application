@@ -11,6 +11,15 @@
               success: function(data){
             let newPost=newPostDom(data.data.post);
             $('#post-list-container>ul').prepend(newPost);
+            $('#user-name').text(data.data.user_data)
+            console.log(data.data.user_data);
+            new Noty({
+                theme: 'relax',
+                text: 'Post Publish',
+                type:"success",
+                layout:'topRight',
+                timeout:1500
+            }).show();
             deletePost($('.delete-post',newPost));
               },error:function(error){
                   console.log(error.responseText);
@@ -25,7 +34,7 @@
                 
                     
                    
-                        <small style="color:blue;margin-bottom: 5px;text-align: left;font-size: 1.1rem;">${post.user.name}</small>
+                        <small id="user-name" style="color:blue;margin-bottom: 5px;text-align: left;font-size: 1.1rem;">${post.user.name}</small>
                         <small>
                             <a class="delete-post"style="color:red;" href="/post/destroy_post/${post._id}">X</a>
                         </small>
@@ -56,6 +65,13 @@ let deletePost=function(deleteLink){
             url:$(deleteLink).prop('href'),
             success:function(data){
                 $(`#post-${data.post_id}`).remove();
+                new Noty({
+                    theme: 'relax',
+                    text: 'Post Deleted',
+                    type:"success",
+                    layout:'topRight',
+                    timeout:1500
+                }).show();
 
             },error:function(error){
                 console.log(error.responseText);
@@ -63,6 +79,18 @@ let deletePost=function(deleteLink){
         });
     });
 }
+let convertPostsToAjax = function(){
+    $('#posts-list-container>ul>li').each(function(){
+        let self = $(this);
+        let deleteButton = $(' .delete-post', self);
+        deletePost(deleteButton);
+
+        // get the post's id by splitting the id attribute
+        let postId = self.prop('id').split("-")[1]
+        new PostComments(postId);
+    });
+}
 
   createPost()
+  convertPostsToAjax()
 }

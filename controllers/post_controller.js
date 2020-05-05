@@ -1,5 +1,6 @@
 const Post = require("../models/post")
 const Comment = require("../models/comment");
+const User=require("../models/user")
 
 module.exports.create = async function(req, res) {
     try{
@@ -8,18 +9,20 @@ module.exports.create = async function(req, res) {
         content: req.body.content,
         user: req.user._id
     });
+    const user= await User.findOne(req.user._id)
+    console.log(user.name);
 
     if(req.xhr){
-       
         return res.status(200).json({
             data:{
-                post:post
+                post:post,
+                user_data:user.name
             },
             message:'Post created'
         });
         
     }
-    req.flash('success',"Post Created");
+   
     
         
         return res.redirect("back");

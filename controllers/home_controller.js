@@ -22,6 +22,15 @@ const posts= await Post.find({}).populate("user").sort('-createdAt').populate({
         user_list:user
     
     });
+    if(req.xhr){
+        return res.status(200).json({
+            data:{
+                user_name:user
+            },
+            message:'Post created'
+        });
+        
+    }
 
     }catch(err){
         console.log("Error",err);

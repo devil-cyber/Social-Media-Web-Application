@@ -4,7 +4,7 @@
             
                 
                
-                    <small style="color:blue;margin-bottom: 5px;text-align: left;font-size: 1.1rem;"><%=posts.user.name%></small>
+                    <small id="user-name"style="color:blue;margin-bottom: 5px;text-align: left;font-size: 1.1rem;"><%=posts.user.name%></small>
                     <%if(locals.user && locals.user.id==posts.user.id){%>
                     <small>
                         <a class="delete-post"style="color:red;" href="/post/destroy_post/<%=posts.id%>">X</a>
