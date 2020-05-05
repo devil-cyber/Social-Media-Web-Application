@@ -79,17 +79,46 @@ module.exports.create_session = function(req, res) {
 
 
 
-module.exports.update=function(req,res){
-    if(req.params.id==req.user.id){
-        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
-           if(err){
-               req.flash("error","Invalid Credentials");
-           }
-           return res.redirect("back");
-        });
-    }
-    else{
+module.exports.update=async function(req,res){
+    // if(req.params.id==req.user.id){
+    //     User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+    //        if(err){
+    //            req.flash("error","Invalid Credentials");
+    //        }
+    //        return res.redirect("back");
+    //     });
+    // }
+    // else{
         
+    //     
+    // }
+    if(req.params.id==req.user.id){
+        try{
+            let user=await User.findById(req.params.id);
+            User.uploadAvtar(req,res,function(err){
+             if(err){
+                 console.log("Multer eror",error);
+             }
+             user.name=req.body.name;
+             user.email=req.body.email;
+             if(req.file){
+                 user.avtar=User.avtarPath + '/'+req.file.filename;
+             }
+             user.save();
+             req.flash("success",'Profile Updated');
+             return res.redirect('back');
+            })
+
+        }catch(err){
+            req.flash('error',err);
+            return res.redirect('back');
+        }
+
+
+    }else{
+        req.flash('error','Unauthorized')
         return res.status(401).send("Unauthorized");
+
     }
+
 }

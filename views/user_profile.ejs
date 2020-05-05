@@ -4,10 +4,11 @@
 
 
 <div class="container c1">
-    <h1>Codeial Profile</h1>
 <%if(user_profile.id ==  user.id){%>
-    <form action="/users/update/<%=user_profile.id%>" method="POST">
+    <img src="<%=user.avtar%>" alt="<%=user.name%>" width="100">
+    <form action="/users/update/<%=user_profile.id%>" enctype="multipart/form-data" method="POST">
         <input type="text"name="name"value="<%=user_profile.name%>" required>
+        <input type="file" name='avtar'placeholder="Profile Picture">
         <input type="email"name="email"value="<%=user_profile.email%>"required>
         <input type="submit" value="Update">
     </form>

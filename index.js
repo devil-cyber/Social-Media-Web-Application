@@ -31,6 +31,8 @@ app.use(cookieParser());
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 app.use(express.static("./assets"));
+// make the upload path avilabe to browser
+app.use('/uploads',express.static(__dirname + '/uploads'))
 app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.set("views", "./views");
