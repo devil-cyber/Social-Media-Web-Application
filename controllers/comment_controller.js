@@ -32,7 +32,7 @@ module.exports.destroy_comment = function(req, res) {
         if (comment.user == req.user.id) {
             let postid = comment.post;
             comment.remove();
-            req.flash('success','Comment Deleted');
+            req.flash('success','Comment Deleted ');
 
             Post.findByIdAndUpdate(postid, { $pull: { comment: req.params.id } }, function(err, post) {
                 return res.redirect("back");
