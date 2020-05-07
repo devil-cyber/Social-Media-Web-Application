@@ -1,21 +1,19 @@
 .home-container {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
-.home-container .post2 {
-  position: absolute;
-  right: 15%;
-  height: 100%vh;
-  border-left: 1px solid lightgrey;
+.home-container .post1 {
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 578px) {
-  .home-container .post1 {
-    margin-left: 10px;
-  }
-  .home-container .post1 #create-post {
-    position: absolute;
-    top: 160px;
-  }
+.home-container .post1 #create-post {
+  margin-left: 3%;
+}
+
+.home-container .post2 {
+  border-left: 1px solid lightgrey;
+  margin-right: 10%;
 }

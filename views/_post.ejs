@@ -1,22 +1,16 @@
 
-    <li id="post-<%=posts._id%>"style="border-bottom:1px solid grey;background-color: whitesmoke;height:200px;width:250px;padding:4px;">
-        <p>
-            
-                
-               
-                    <small id="user-name"style="color:blue;margin-bottom: 5px;text-align: left;font-size: 1.1rem;"><%=posts.user.name%></small>
+    <li id="post-<%=posts._id%>">
+         <small style="color:steelblue;font-size: 1.1rem;;" id="user-name"><%=posts.user.name%></small>
                     <%if(locals.user && locals.user.id==posts.user.id){%>
                     <small>
                         <a class="delete-post"style="color:red;" href="/post/destroy_post/<%=posts.id%>">X</a>
                     </small>
                     <%}%>
                     <br>
-                    <span id="post-style">
+                    <span style="color: lightsalmon;"id="post-style">
                     <%=posts.content%>
-                    <hr>
+                    
                 </span>
-
-        </p>
         <%if(locals.user){%>
             <form  action="/comment/create" id="new-comment-form" method="POST">
 
@@ -35,7 +29,7 @@
                                 <a class="delete-comment" style="color: red;" href="/comment/destroy_comment/<%=comments.id%>">X</a>
                             </small>
                                     <%}%>
-                                        <small style="color:blue;text-decoration: underline;font-size: 1.1rem;">
+                                        <small style="color:steelblue;font-size: .9rem;">
                                 <%=comments.user.name%>
                              </small>
                                         <%=comments.content%><br>

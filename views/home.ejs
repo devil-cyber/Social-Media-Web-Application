@@ -1,30 +1,27 @@
 <link rel="stylesheet" href="/css/home.css">
 <!-- <center style="position: absolute;top:100px;left:45%">
     <h2>Codeial Homepage</h2> -->
-</center>
 <div class="home-container">
     <div class="post1">
         <div id="create-post">
-            <h4 style="margin-left:20px;">Post</h4>
+            <h4>Post</h4>
             <%if(locals.user){%>
-            <form style="margin-left:20px;" action="/post/create" id="new-post-form" method="POST">
+            <form action="/post/create" id="new-post-form" method="POST">
                 <textarea name="content" cols="25" rows="2" placeholder="type here..."></textarea>
                 <input type="submit" value="Post">
             </form>
+                
+</div>
             <%}%>
         <div id="post-list-container">
                 <ul id="list" style="list-style: none;">
                     <%for(posts of post){%>
                     <%- include("_post")%>
+                    <hr>
                     
     <%}%>
             </ul>
         </div>
-            <div>
-            </div>
-    
-</div>
-
 
 </div>
 <div class="post2">
@@ -35,5 +32,6 @@
     </ul>
 
     <%}%>
+</div>
 </div>
 <script src="/js/home_post.js"></script>

@@ -30,32 +30,24 @@
   }
 
   let newPostDom=function(post){
-      return $(`<li id="post-${post.id}"style="border-bottom:1px solid grey;background-color: whitesmoke;height:200px;width:250px;padding:4px;">
-            <p>
-                
-                    
-                   
-                        <small id="user-name" style="color:blue;margin-bottom: 5px;text-align: left;font-size: 1.1rem;">${post.user.name}</small>
-                        <small>
-                            <a class="delete-post"style="color:red;" href="/post/destroy_post/${post._id}">X</a>
-                        </small>
-                        <br>
-                        <span id="post-style">
-                        ${post.content}
-                        <hr>
-                    </span>
-    
-            </p>
-                <form id="comment-form" action="/comment/create" method="POST">
-    
-                    <input  style="width:130px;border-radius: 4px;padding:2px;"type="text" name="content" placeholder="comment" required >
-                    <input type="hidden" name="post" value="${post._id}" />
-                    <input style="border-radius: 2px;padding:2px;"type="submit" value="comment">
-                </form>
-    
-        </li>
-    
-        `)
+      return $(`<li id="post-${post._id}">
+      <small style="color:steelblue;font-size: 1.1rem;;" id="user-name">${post.user.name}</small>
+                 <small>
+                     <a class="delete-post"style="color:red;" href="/post/destroy_post/${post._id}">X</a>
+                 </small>
+                 <br>
+                 <span style="color: lightsalmon;"id="post-style">
+                 ${post.content}
+                 
+             </span>
+         <form  action="/comment/create" id="new-comment-form" method="POST">
+
+             <input  style="width:130px;border-radius: 4px;padding:2px;"type="text" name="content" placeholder="comment" required >
+             <input type="hidden" name="post" value=${post._id}>
+             <input style="border-radius: 2px;padding:2px;" type="submit" value="comment">
+         </form>
+
+ </li>`)
   }
 let deletePost=function(deleteLink){
     $(deleteLink).click(function(e){
