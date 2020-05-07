@@ -5,7 +5,7 @@
 
 <div class="container c1">
 <%if(user_profile.id ==  user.id){%>
-    <img src="<%=user.avtar%>" alt="<%=user.name%>" width="100">
+    <img src="<%=user.avtar%>" alt="<%=user.name%>" width="300px">
     <form action="/users/update/<%=user_profile.id%>" enctype="multipart/form-data" method="POST">
         <input type="text"name="name"value="<%=user_profile.name%>" required>
         <input type="file" name='avtar'placeholder="Profile Picture">

@@ -18,13 +18,33 @@
 
         </p>
         <%if(locals.user){%>
-            <form id="comment-form" action="/comment/create" method="POST">
+            <form  action="/comment/create" id="new-comment-form" method="POST">
 
                 <input  style="width:130px;border-radius: 4px;padding:2px;"type="text" name="content" placeholder="comment" required >
                 <input type="hidden" name="post" value="<%=posts._id%>" />
-                <input style="border-radius: 2px;padding:2px;"type="submit" value="comment" />
+                <input style="border-radius: 2px;padding:2px;" type="submit" value="comment">
             </form>
 
             <%}%>
-                <%-include("_comment")%>
+            <div id="comment">
+                <ul>
+                    <%for(comments of posts.comment){%>
+                        <li id="comment-<%=comments.id%>"style="text-align:left;">
+                                <%if(locals.user && locals.user.id==comments.user.id ){%>
+                                    <small>
+                                <a class="delete-comment" style="color: red;" href="/comment/destroy_comment/<%=comments.id%>">X</a>
+                            </small>
+                                    <%}%>
+                                        <small style="color:blue;text-decoration: underline;font-size: 1.1rem;">
+                                <%=comments.user.name%>
+                             </small>
+                                        <%=comments.content%><br>
+            
+                            <%}%>
+                        </li>
+                </ul>
+            
+            </div>
+
     </li>
+    <script src="/js/home_comment.js"></script>

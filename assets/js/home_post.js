@@ -4,6 +4,7 @@
 
       newPostForm.submit(function(e){
           e.preventDefault();
+          e.stopPropagation();
           $.ajax({
               type:'post',
               url:'/post/create',
@@ -15,7 +16,7 @@
             console.log(data.data.user_data);
             new Noty({
                 theme: 'relax',
-                text: 'Post Publish',
+                text: 'Post Created',
                 type:"success",
                 layout:'topRight',
                 timeout:1500
@@ -57,7 +58,6 @@
         `)
   }
 let deletePost=function(deleteLink){
-    console.log("HEllo");
     $(deleteLink).click(function(e){
         e.preventDefault();
         $.ajax({
