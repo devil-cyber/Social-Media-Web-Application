@@ -1,25 +1,9 @@
 const Comment = require("../models/comment");
 const Post = require("../models/post");
+const commentMailer=require("../mailers/comment_mailer");
 
 
 module.exports.create = async function(req, res) {
-    // Post.findById(req.body.post, function(err, post) {
-    //     if (post) {
-    //         let comm=Comment.create({
-    //             content: req.body.content,
-    //             post: req.body.post,
-    //             user: req.user._id
-    //         }, function(err, comment) {
-    //             if (err) {
-    //                 console.log("error in creating comment");
-    //             }
-    //             post.comment.push(comment);
-    //             post.save();
-    //             req.flash('success','Comment created');
-    //             res.redirect("/");
-    //         });
-    //     }
-    // });
     try{
           let post= await Post.findById(req.body.post);
           if(post){
@@ -29,21 +13,14 @@ module.exports.create = async function(req, res) {
                 user: req.user._id
               });
               post.comment.push(comment);
+              
             post.save();
-            if(req.xhr){
- comment = await comment.populate('user', 'name').execPopulate();
-
-                return res.status(200).json({
-                    data:{
-                        comment:comment,
-                    },
-                    message:'Comment created'
-                });
-            }
-            
+            comment= await comment.populate('user', 'name email').execPopulate();
+            console.log(comment);
+            commentMailer.newComment(comment);
             req.flash('success','Comment created');
-            res.redirect("back");
-          }
+            return res.redirect('back');
+        }
         }catch(error){
             req.flash('error',error);
             return;
