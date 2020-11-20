@@ -21,7 +21,7 @@
 >> To run this project locally :
 - `Clone this project `
 - Go to project directory and type `npm install`
-#### Note : Any issue may occur with `SASS` follow this [Solution](https://stackoverflow.com/questions/45876943/node-sass-installation-issue)
+#### Note : Any issue may occur with `SASS installation` follow this [Solution](https://stackoverflow.com/questions/45876943/node-sass-installation-issue)
 - After successful execution of code type `npm start`
 - `Project will start locally at port 2000`
 - Open your browser and type `localhost:2000 or http://127.0.0.1:2000/`
